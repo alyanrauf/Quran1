@@ -24,12 +24,10 @@
   *{ box-sizing: border-box; }
 
   html, body{
-
     margin:0; padding:0; height:100%;
     background: var(--ink);
     font-family: 'Noto Nastaliq Urdu', serif;
     overflow: hidden;
-    overflow-x: hidden;
   }
 
   /* ===== Background texture ===== */
@@ -40,12 +38,11 @@
       var(--ink);
   }
 
- .deck{
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh; /* better mobile support */
-}
+  .deck{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
 
   .slide{
     position: absolute;
@@ -57,8 +54,7 @@
     visibility: hidden;
     transform: scale(0.97);
     transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
-    padding: clamp(10px, 3vw, 28px);
-}
+    padding: 28px;
   }
   .slide.active{
     opacity: 1;
@@ -69,9 +65,7 @@
   .card{
     position: relative;
     width: min(900px, 94vw);
-    height: auto;
-    min-height: 70vh;
-    max-height: 92vh;
+    height: min(640px, 90vh);
     background: var(--parchment);
     border-radius: 6px;
     box-shadow: 0 30px 70px var(--shadow), 0 0 0 1px rgba(169,121,47,0.4);
@@ -103,7 +97,7 @@
   .card-inner{
     position: relative;
     z-index: 2;
-     margin: clamp(12px, 3vw, 34px);
+    margin: 34px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -220,7 +214,7 @@
   }
   .phrase-arabic{
     font-family:'Amiri', serif;
-    font-size: clamp(22px, 6vw, 42px);
+    font-size: 42px;
     color: var(--maroon-deep);
     line-height: 1.6;
     margin: 0;
@@ -240,7 +234,7 @@
   }
   .ayah-arabic{
     font-family:'Amiri', serif;
-   font-size: clamp(18px, 5vw, 28px);
+    font-size: 28px;
     color: var(--ink);
     line-height: 2.1;
     text-align: center;
@@ -421,32 +415,83 @@
     color: var(--parchment);
   }
 
-  @media (max-width: 640px){
-    .cover h1{ font-size: clamp(24px, 5vw, 44px); }
-    .section-divider .big-word{  font-size: clamp(40px, 10vw, 84px); }
-    .phrase-arabic{ font-size: clamp(24px, 5vw, 30px); }
-    .ayah-arabic{ font-size: clamp(18px, 4vw, 22px); }
-    .card-inner{ margin: clamp(12px, 3vw, 22px); }
-    .ayah-card{ padding: clamp(10px, 2vw, 14px) clamp(12px, 3vw, 16px); }
+@media (max-width: 640px){
+  .deck{ height: 100vh; height: 100dvh; }
+
+  .slide{ padding: 12px; padding-top: 64px; padding-bottom: 84px; }
+
+  .card{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
   }
-  @media (max-width: 640px){
-  .nav-controls{
-    bottom: 12px;
-    gap: 10px;
+  .card::before{ inset: 8px; }
+  .card::after{ inset: 14px; }
+
+  .card-inner{
+    margin: 18px;
+    overflow-y: auto;
   }
 
+  .cover .bismillah{ font-size: 20px; }
+  .cover h1{ font-size: 26px; line-height: 1.6; }
+  .cover .subtitle{ font-size: 15px; line-height: 1.8; }
+  .cover .scope-badge{ font-size: 14px; padding: 8px 16px; }
+  .cover .hint{ font-size: 13px; margin-top: 18px; }
+
+  .section-divider .eyebrow{ font-size: 14px; }
+  .section-divider .big-word{ font-size: 40px; line-height: 1.4; }
+  .section-divider .desc{ font-size: 15px; line-height: 1.8; }
+
+  .top-row{ margin-bottom: 12px; padding-bottom: 10px; }
+  .group-tag{ font-size: 12px; padding: 3px 10px; }
+
+  .phrase-block{ margin: 4px 0 14px; }
+  .phrase-arabic{ font-size: 24px; line-height: 1.7; }
+  .phrase-meaning{ font-size: 15px; margin-top: 4px; }
+
+  .ayah-card{ padding: 14px 14px; margin-bottom: 12px; border-right-width: 4px; }
+  .ayah-arabic{ font-size: 19px; line-height: 1.9; margin-bottom: 10px; }
+  .ayah-translation{ font-size: 14px; line-height: 1.8; }
+
+  .ref-row{ gap: 6px; margin-bottom: 12px; }
+  .ref-pill{ font-size: 12px; padding: 5px 12px; }
+
+  .note-block{ font-size: 14px; line-height: 1.8; padding-top: 10px; }
+
+  .toc-btn{
+    top: 12px;
+    left: 12px;
+    font-size: 13px;
+    padding: 7px 14px;
+  }
+
+  .nav-controls{
+    bottom: 14px;
+    gap: 12px;
+  }
   .nav-btn{
     width: 40px;
     height: 40px;
-    font-size: 18px;
+    font-size: 17px;
   }
+  .nav-progress{ font-size: 12px; min-width: 50px; }
 
-  .toc-btn{
-    top: 10px;
-    left: 10px;
-    padding: 7px 14px;
-    font-size: 13px;
+  .toc-panel{
+    width: 92vw;
+    max-height: 78vh;
+    padding: 20px;
   }
+  .toc-panel h2{ font-size: 20px; }
+  .toc-item{ padding: 10px 12px; }
+  .toc-item .toc-phrase{ font-size: 16px; }
+  .toc-item .toc-ref{ font-size: 12px; }
+}
+
+@media (max-width: 380px){
+  .phrase-arabic{ font-size: 21px; }
+  .ayah-arabic{ font-size: 17px; }
+  .section-divider .big-word{ font-size: 32px; }
 }
 </style>
 </head>
