@@ -284,6 +284,19 @@
     margin-left: 6px;
   }
 
+  .section-divider .grammar-block{
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--parchment-deep);
+  border-right: 4px solid var(--gold);
+  border-radius: 4px;
+  padding: 16px 20px;
+  max-width: 600px;
+  line-height: 2;
+  text-align: right;
+  margin-top: 10px;
+}
+
   /* ===== Nav controls ===== */
   .nav-controls{
     position: fixed;
@@ -519,13 +532,13 @@
 <script>
 // Build the full slide list: cover, section dividers, and word slides
 const deck = [];
-
 deck.push({ type: 'cover' });
 deck.push({
   type: 'section',
   eyebrow: 'یونٹ ۳ — سبق ۴',
   big: 'رَبّ و یَوْم',
-  desc: 'اضافت کے ذریعے بننے والے الفاظ — جیسے "رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ"۔ ہر مثال پارہ ۲۵ تا ۳۰ سے قرآنی حوالے کے ساتھ۔'
+  desc: 'اضافت کے ذریعے بننے والے الفاظ — جیسے "رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ"۔ ہر مثال پارہ ۲۵ تا ۳۰ سے قرآنی حوالے کے ساتھ۔',
+  grammar: UNIT_GRAMMAR["4"]
 });
 
 SLIDES.filter(s => s.chapter === '4').forEach(s => deck.push({ type: 'word', data: s }));
@@ -534,19 +547,11 @@ deck.push({
   type: 'section',
   eyebrow: 'یونٹ ۳ — سبق ۷',
   big: 'کُلّ',
-  desc: '"کُلّ" کا مطلب اردو میں "ہر" ہے۔ یہ لفظ جب دوسرے الفاظ کی طرف نسبت پاتا ہے تو "ہر ایک چیز"، "ہر جان" جیسے مفہوم بنتا ہے۔'
+  desc: '"کُلّ" کا مطلب اردو میں "ہر" ہے۔ یہ لفظ جب دوسرے الفاظ کی طرف نسبت پاتا ہے تو "ہر ایک چیز"، "ہر جان" جیسے مفہوم بنتا ہے۔',
+  grammar: UNIT_GRAMMAR["7"]
 });
 
 SLIDES.filter(s => s.chapter === '7').forEach(s => deck.push({ type: 'word', data: s }));
-
-deck.push({
-  type: 'section',
-  eyebrow: 'اضافی الفاظ',
-  big: 'متفرق اضافتیں',
-  desc: 'خَلْق، اِمْرَأَة، عَذَاب، ذُو/ذِي اور کُلّ سے مزید قرآنی مثالیں — پارہ ۲۵ تا ۳۰ سے۔'
-});
-
-SLIDES.filter(s => s.chapter === 'extra').forEach(s => deck.push({ type: 'word', data: s }));
 let current = 0;
 
 function renderSlide(item, idx){
@@ -574,6 +579,7 @@ function renderSlide(item, idx){
             <div class="eyebrow">${item.eyebrow}</div>
             <div class="big-word">${item.big}</div>
             <div class="desc">${item.desc}</div>
+            <div class="grammar-block">${item.grammar.replace(/\n/g, '<br>')}</div>
           </div>
         </div>
       </div>`;
