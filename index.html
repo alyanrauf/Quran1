@@ -74,6 +74,28 @@
     flex-direction: column;
   }
 
+.intro-label{
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+.intro-names{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+.intro-name{
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 24px;
+  color: var(--ink);
+  background: rgba(169,121,47,0.07);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 28px;
+}
+
   /* ===== Ornamental border frame, echoing the manuscript scans ===== */
   .card::before{
     content:"";
@@ -432,7 +454,9 @@
   .deck{ height: 100vh; height: 100dvh; }
 
   .slide{ padding: 12px; padding-top: 64px; padding-bottom: 84px; }
-
+.intro-label{ font-size: 14px; }
+.intro-names{ grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.intro-name{ font-size: 15px; padding: 8px 14px; }
   .card{
     width: 100%;
     height: 100%;
@@ -533,11 +557,24 @@
 // Build the full slide list: cover, section dividers, and word slides
 const deck = [];
 deck.push({ type: 'cover' });
+
+deck.push({
+  type: 'intro',
+  names: [
+    'عفان احمد',
+    'عریبہ عمران',
+    'حدیہ ظفر',
+    'محمد علیان',
+    'طلحہ جاوید',
+    'سیدہ حسنینہ بخاری'
+  ]
+});
+
 deck.push({
   type: 'section',
   eyebrow: 'یونٹ ۳ — سبق ۴',
-  big: 'رَبّ و یَوْم',
-  desc: 'اضافت کے ذریعے بننے والے الفاظ — جیسے "رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ"۔ ہر مثال پارہ ۲۵ تا ۳۰ سے قرآنی حوالے کے ساتھ۔',
+  big: 'رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ',
+  desc: 'اضافت کے ذریعے بننے والے الفاظ — جیسے "رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ"۔ ہر',
   grammar: UNIT_GRAMMAR["4"]
 });
 
@@ -559,7 +596,19 @@ function renderSlide(item, idx){
   el.className = 'slide';
   el.dataset.index = idx;
 
-  if(item.type === 'cover'){
+  if(item.type === 'intro'){
+    const namesHTML = item.names.map(n => `<div class="intro-name">${n}</div>`).join('');
+    el.innerHTML = `
+      <div class="card">
+        <div class="card-inner">
+          <div class="cover">
+        
+            <div class="intro-label">پیش کار</div>
+            <div class="intro-names">${namesHTML}</div>
+          </div>
+        </div>
+      </div>`;
+  } else if(item.type === 'cover'){
     el.innerHTML = `
       <div class="card">
         <div class="card-inner">
