@@ -573,8 +573,8 @@ deck.push({
 deck.push({
   type: 'section',
   eyebrow: 'یونٹ ۳ — سبق ۴',
-  big: 'رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ',
-  desc: 'اضافت کے ذریعے بننے والے الفاظ — جیسے "رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ"۔ ہر',
+  big: ['رَبّ', 'یَوْم'],
+  desc: 'اضافت کے ذریعے بننے والے الفاظ — جیسے "رَبُّ الْعَرْشِ" یا "یَوْمُ الدِّینِ"۔ ہر مثال پارہ ۲۵ تا ۳۰ سے قرآنی حوالے کے ساتھ۔',
   grammar: UNIT_GRAMMAR["4"]
 });
 
@@ -582,11 +582,13 @@ SLIDES.filter(s => s.chapter === '4').forEach(s => deck.push({ type: 'word', dat
 
 deck.push({
   type: 'section',
-  eyebrow: 'یونٹ ۳ — سبق ۷',
-  big: 'کُلّ',
-  desc: '"کُلّ" کا مطلب اردو میں "ہر" ہے۔ یہ لفظ جب دوسرے الفاظ کی طرف نسبت پاتا ہے تو "ہر ایک چیز"، "ہر جان" جیسے مفہوم بنتا ہے۔',
-  grammar: UNIT_GRAMMAR["7"]
+  eyebrow: 'یونٹ ۳ — سبق ۱۰',
+  big: 'تثنیہ',
+  desc: 'جب کسی واحد لفظ کے آخر میں "ان" یا "یْنِ" لگایا جائے تو وہ "دو" کی تعداد ظاہر کرتا ہے — جیسے مُؤْمِنٌ سے مُؤْمِنَانِ۔',
+  grammar: UNIT_GRAMMAR["10"]
 });
+
+SLIDES.filter(s => s.chapter === '10').forEach(s => deck.push({ type: 'word', data: s }));
 
 SLIDES.filter(s => s.chapter === '7').forEach(s => deck.push({ type: 'word', data: s }));
 let current = 0;
